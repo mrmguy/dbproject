@@ -10,10 +10,12 @@ CREATE TABLE region (
 	region VARCHAR(255),
 	climate VARCHAR(255),
 	production INT,
-	origin_date YEAR 
+	origin_date YEAR,
+	grape_id INT,
+	FOREIGN KEY (grape_id) REFERENCES grape(id)
 	) ENGINE = innodb;
 
-CREATE TABLE flavor_type (
+CREATE TABLE flavors (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	flavor VARCHAR(50) NOT NULL UNIQUE,
 	description TEXT
@@ -24,20 +26,20 @@ CREATE TABLE food (
 	food_item VARCHAR(255)
 	) ENGINE = innodb;
 
-CREATE TABLE grape_region (
-	id INT AUTO_INCREMENT PRIMARY KEY,
-	grape_id INT,
-	region_id INT,
-	FOREIGN KEY (grape_id) REFERENCES grape(id),
-	FOREIGN KEY (region_id) REFERENCES region(id)
-	) ENGINE = innodb;
+-- CREATE TABLE grape_region (
+-- 	id INT AUTO_INCREMENT PRIMARY KEY,
+-- 	grape_id INT,
+-- 	region_id INT,
+-- 	FOREIGN KEY (grape_id) REFERENCES grape(id),
+-- 	FOREIGN KEY (region_id) REFERENCES region(id)
+-- 	) ENGINE = innodb;
 
-CREATE TABLE grape_flavor_type (
+CREATE TABLE grape_flavor (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	grape_id INT,
 	flavor_id INT,
 	FOREIGN KEY (grape_id) REFERENCES grape(id),
-	FOREIGN KEY (flavor_id) REFERENCES flavor_type(id)
+	FOREIGN KEY (flavor_id) REFERENCES flavors(id)
 	) ENGINE = innodb;
 
 CREATE TABLE grape_food (
