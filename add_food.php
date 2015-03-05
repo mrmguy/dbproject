@@ -6,14 +6,13 @@
   if ($mysqli->connect_errno) {
     echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
   }
-  if (!($stmt = $mysqli->prepare("INSERT INTO grape (grape_name, color) VALUES (?, ?)"))) {
+  if (!($stmt = $mysqli->prepare("INSERT INTO food (food_item) VALUES (?)"))) {
     echo "Prepare failed: (" . $mysqli->erro . ") " . $mysqli->error;
   }
 
-  $grape = $_GET['grape'];
-  $color = $_GET['color'];
+  $food_item = $_GET['food'];
   
-  if (!$stmt->bind_param("ss", $grape, $color)) {
+  if (!$stmt->bind_param("s", $food_item)) {
     echo "Binding parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
   }
   if (!$stmt->execute()) {

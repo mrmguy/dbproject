@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="custom.css">
 </head>
 <body>
 
@@ -30,8 +31,8 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Main</a></li>
             <li><a href="#">Search</a></li>
-            <li><a href="#">Add</a></li> 
-            <li><a href="#">Delete</a></li> 
+            <li><a href="wine_add.php">Add</a></li> 
+            <li><a href="#">Change/Delete</a></li> 
           </ul>
         </div>
       </nav>
@@ -39,54 +40,28 @@
 
     <div class="row">
       <div class="col-sm-2">
-        <ul class="list-group">
+      <?php
+        include 'grape_list_menu.php'
+      ?>
+        <!-- <ul class="list-group">
           <h4 class = "list-group-item-heading">Menu</h4>
           <li class="list-group-item active">Main</li>
-          <li class="list-group-item">Second item</li>
-          <li class="list-group-item">Third item</li>
-        </ul>
+          <li class="list-group-item">Search</li>
+          <li class="list-group-item">Add</li>
+          <li class="list-group-item">Change/Delete</li>
+        </ul> -->
       </div>
 
       <div class="col-sm-10">
-        <p>This site displays wine grape information.</p>
-        <p>You can view, edit, and add information.</p>
-        <p>Select a grape varietal or all grapes to display everything</p>
-        <?php
-          // ************************************* grape_list ****************************************
-          if (!($stmt = $mysqli->prepare("SELECT grape_name FROM grape ORDER BY grape_name ASC"))) {
-            echo "Prepare failed: (" . $mysqli->erro . ") " . $mysqli->error;
-          }
-          if (!$stmt->execute()) {
-            echo "Execute failed: (" . $mysqli->erro . ") " . $mysqli->error;
-          }
-          $wine_list = NULL;
-          if (!$stmt->bind_result($wine_list)) {
-            echo "Binding Output Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
-          }
-          // ************************************** form to select grape to view **********************
-          echo '<form action = "grape_list.php" method="get">';
-          echo '<select name = "wine_type">';
-          while ($stmt->fetch()) {
-            echo '<option value = "' . $wine_list . '">' . $wine_list . '</option>';
-          }
-          if ($wine_list) {
-            echo '<option value = "All">ALL Grapes</option>';
-          }
-          echo '<input type = "submit" class="btn btn-default">';
-          echo '</form>';
-        ?>
-        <!-- ******************************************************* add_grape *************** -->
-        <form role="form" action = "add_grape.php" method = "get">
-          <div class="form-group">
-            <label>Wine Grape:</label>
-            <input type="text" name="grape">
-          </div>
-          <div class="form-group">
-            <label>Color</label>
-            <input type="text" name="color">
-          </div>
-          <button type="submit" class="btn btn-default">Add Grape</button>
-        </form>
+        <h2>How to use this site</h2>
+        <hr>
+        <p>This site provides information on wine grapes. The information includes food pairings, flavor charateristics, and information about different grapes</p>
+        <p>There are several ways to use this site. If you would like to search for information such as what wine will go best with certain foods
+        or what food will go best with certain wines, go to the search page.</p>
+        <p>To enter additional grapes, foods, flavor charateristics or wine information or to associate wine, food, and flavors go to Add.</p>
+        <p>Finally any item can be deleted or changed on the change/delete link.</p>
+        
+        
 
 
 

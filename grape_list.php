@@ -24,24 +24,105 @@
       <h1>Wine Database</h1>
       <p>Many things to know about wine.</p> 
     </div>
+    <nav class="navbar navbar-inverse">
+        <div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Main</a></li>
+            <li><a href="#">Search</a></li>
+            <li><a href="wine_add.php">Add</a></li> 
+            <li><a href="#">Change/Delete</a></li> 
+          </ul>
+        </div>
+      </nav>
     <div class="row">
       <div class="col-sm-2">
-        <p>test</p>
+        <?php
+          include 'grape_list_menu.php'
+        ?>
       </div>
       <div class = "col-sm-10">
 
 
         <?php
 
+        // *********************************** grape / origin **************************************************
+          if (!($stmt = $mysqli->prepare("SELECT grape.grape_name, region.region, region.climate, region.production, region.origin_date FROM `grape` 
+            INNER JOIN region ON grape.id=region.grape_id WHERE grape.id = ?"))) {
+            echo "Prepare failed: (" . $mysqli->erro . ") " . $mysqli->error;
+          }
+          
+          $grape = $_GET['grape_id'];
+          if (!$stmt->bind_param("i", $grape)) {
+            echo "Binding Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
+          }
+
+          if (!$stmt->execute()) {
+            echo "Execute failed: (" . $mysqli->erro . ") " . $mysqli->error;
+          }
+          $grape_name = NULL;
+          $region = NULL;
+          $climate = NULL;
+          $production = NULL;
+          $origin_date = NULL;
+
+          if (!$stmt->bind_result($grape_name, $region, $climate, $production, $origin_date)) {
+            echo "Binding Output Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
+          }
+          
+          $stmt->fetch();
+          echo '<h4>' . $grape_name . ' Information:</h4>';
+          echo '<p>Region: ' . $region . '</p>';
+          echo '<p>Climate: ' . $climate . '</p>';
+          echo '<p>Production: ' . $production . '</p>';
+          echo '<p>Origin Date:' . $origin_date . '</p>';
+
+
+          while ($stmt->fetch()) {
+            //echo '<p>' . $grape_name . '</p>';
+            echo '<p>' . $region . '</p>';
+           } 
+
+           // ******************************* grape / flavor ***************************************************
+           if (!($stmt = $mysqli->prepare("SELECT grape.grape_name, flavors.flavor, flavors.description FROM `grape` INNER JOIN grape_flavor 
+            ON grape.id=grape_flavor.grape_id INNER JOIN flavors ON grape_flavor.flavor_id=flavors.id WHERE grape.id = ?"))) {
+            echo "Prepare failed: (" . $mysqli->erro . ") " . $mysqli->error;
+          }
+          
+          
+          $grape = $_GET['grape_id'];
+          if (!$stmt->bind_param("s", $grape)) {
+            echo "Binding Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
+          }
+
+          if (!$stmt->execute()) {
+            echo "Execute failed: (" . $mysqli->erro . ") " . $mysqli->error;
+          }
+          $grape_name = NULL;
+          $flavor = NULL;
+          $description = NULL;
+
+          if (!$stmt->bind_result($grape_name, $flavor, $description)) {
+            echo "Binding Output Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
+          }
+          
+          $stmt->fetch();
+          echo '<h4>' . $grape_name . ' Flavors:</h4>';
+          echo '<p>' . $flavor . ' - '. $description . '</p>';
+          while ($stmt->fetch()) {
+            //echo '<p>' . $grape_name . '</p>';
+            echo '<p>' . $flavor . '</p>';
+           } 
+
+
+
+        // ********************************** grape / food **********************************************
           if (!($stmt = $mysqli->prepare("SELECT grape.grape_name, food.food_item FROM `grape` INNER JOIN grape_food ON grape.id=grape_food.grape_id
-        INNER JOIN food ON grape_food.food_id=food.id WHERE grape.grape_name = ?"))) {
+        INNER JOIN food ON grape_food.food_id=food.id WHERE grape.id = ?"))) {
           	echo "Prepare failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
           
-          $grape_name = NULL;
-          $food_item = NULL;
-
-          $grape = $_GET['wine_type'];
+          
+          $grape = $_GET['grape_id'];
           if (!$stmt->bind_param("s", $grape)) {
           	echo "Binding Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
@@ -49,11 +130,16 @@
           if (!$stmt->execute()) {
           	echo "Execute failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
+          $grape_name = NULL;
+          $food_item = NULL;
 
           if (!$stmt->bind_result($grape_name, $food_item)) {
           	echo "Binding Output Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
-          echo '<p>' . $grape . ' goes with:</p>';
+          
+          $stmt->fetch();
+          echo '<h4>' . $grape_name . ' goes with:</h4>';
+          echo '<p>' . $food_item . '</p>';
           while ($stmt->fetch()) {
            	//echo '<p>' . $grape_name . '</p>';
            	echo '<p>' . $food_item . '</p>';
