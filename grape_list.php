@@ -27,7 +27,7 @@
     <nav class="navbar navbar-inverse">
         <div>
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Main</a></li>
+            <li class=><a href="wine_main.php">Main</a></li>
             <li><a href="#">Search</a></li>
             <li><a href="wine_add.php">Add</a></li> 
             <li><a href="#">Change/Delete</a></li> 
@@ -79,7 +79,10 @@
 
           while ($stmt->fetch()) {
             //echo '<p>' . $grape_name . '</p>';
-            echo '<p>' . $region . '</p>';
+            echo '<p>Region: ' . $region . '</p>';
+            echo '<p>Climate: ' . $climate . '</p>';
+            echo '<p>Production: ' . $production . '</p>';
+            echo '<p>Origin Date:' . $origin_date . '</p>';
            } 
 
            // ******************************* grape / flavor ***************************************************
@@ -143,6 +146,71 @@
           while ($stmt->fetch()) {
            	//echo '<p>' . $grape_name . '</p>';
            	echo '<p>' . $food_item . '</p>';
+           } 
+
+
+           // ********************************** genetic - listing descendents ************************************************
+
+            if (!($stmt = $mysqli->prepare("SELECT grape.grape_name FROM grape 
+              INNER JOIN genetic ON
+              grape.id = genetic.child_id
+              WHERE genetic.parent_id = ?;"))) {
+            echo "Prepare failed: (" . $mysqli->erro . ") " . $mysqli->error;
+          }
+          
+          
+          $grape = $_GET['grape_id'];
+          if (!$stmt->bind_param("s", $grape)) {
+            echo "Binding Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
+          }
+
+          if (!$stmt->execute()) {
+            echo "Execute failed: (" . $mysqli->erro . ") " . $mysqli->error;
+          }
+          $grape_name = NULL;
+
+          if (!$stmt->bind_result($grape_name)) {
+            echo "Binding Output Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
+          }
+          
+          $stmt->fetch();
+          echo '<h4>Desendent Grapes:</h4>';
+          echo '<p>' . $grape_name . '</p>';
+          while ($stmt->fetch()) {
+            //echo '<p>' . $grape_name . '</p>';
+            echo '<p>' . $grape_name . '</p>';
+           } 
+
+           // ********************************** genetic - listing ancestors ************************************************
+
+            if (!($stmt = $mysqli->prepare("SELECT grape.grape_name FROM grape 
+              INNER JOIN genetic ON
+              grape.id = genetic.parent_id
+              WHERE genetic.child_id = ?;"))) {
+            echo "Prepare failed: (" . $mysqli->erro . ") " . $mysqli->error;
+          }
+          
+          
+          $grape = $_GET['grape_id'];
+          if (!$stmt->bind_param("s", $grape)) {
+            echo "Binding Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
+          }
+
+          if (!$stmt->execute()) {
+            echo "Execute failed: (" . $mysqli->erro . ") " . $mysqli->error;
+          }
+          $grape_name = NULL;
+
+          if (!$stmt->bind_result($grape_name)) {
+            echo "Binding Output Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
+          }
+          
+          $stmt->fetch();
+          echo '<h4>Ancestor Grapes:</h4>';
+          echo '<p>' . $grape_name . '</p>';
+          while ($stmt->fetch()) {
+            //echo '<p>' . $grape_name . '</p>';
+            echo '<p>' . $grape_name . '</p>';
            } 
 
         ?>

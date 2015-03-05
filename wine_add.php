@@ -40,13 +40,9 @@
 
     <div class="row">
       <div class="col-sm-2">
-        <ul class="list-group">
-          <h4 class = "list-group-item-heading">Menu</h4>
-          <li class="list-group-item">Main</li>
-          <li class="list-group-item active">Add</li>
-          <li class="list-group-item">Add</li>
-          <li class="list-group-item">Change/Delete</li>
-        </ul>
+        <?php
+          include 'grape_list_menu.php'
+        ?>
       </div>
 
       <div class="col-sm-10">
@@ -99,7 +95,10 @@
           </div>
         </div>
         <hr>
-        <h4>Add wine history information</h4>
+
+        <div class = "row">
+          <div class = "col-sm-5">
+            <h4>Add wine history information</h4>
 
         <?php
           // ************************************* ADD ORIGIN ***************************************
@@ -131,7 +130,9 @@
           echo '</form>'
         ?>
 
-        <h2>Associate Items</h2>
+          </div>
+          <div class = "col-sm-5">
+            <h2>Associate Items</h2>
         <p>Associate an item by selecting from the drop down list and clicking associate</p>
         <?php
 
@@ -230,7 +231,60 @@
           // }
           echo '<input type = "submit" Value= "Associate Flavor" class="btn btn-default">';
           echo '</form>';
+
+          echo '<p>Parent        Child</p>';
+
+          // ************************************* Parent / Child ************************************************
+
+          echo '<form action = "parent_child.php" method="get">';
+          // if (!($stmt3 = $mysqli->prepare("SELECT id, grape_name FROM grape ORDER BY grape_name ASC"))) {
+          //   echo "Prepare failed: (" . $mysqli->erro . ") " . $mysqli->error;
+          // }
+          /// ********************** Parent
+          if (!$stmt->execute()) {
+            echo "Execute failed: (" . $mysqli->erro . ") " . $mysqli->error;
+          }
+          $grape_name = NULL;
+          $grape_id = NULL;
+          if (!$stmt->bind_result($grape_id, $grape_name)) {
+            echo "Binding Output Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
+          }
+
+          echo '<select name = "parent_type">';
+          while ($stmt->fetch()) {
+            echo '<option value = "' . $grape_id . '">' . $grape_name . '</option>';
+          }
+          echo '</select>';
+
+          // ************************* Child
+          if (!$stmt->execute()) {
+            echo "Execute failed: (" . $mysqli->erro . ") " . $mysqli->error;
+          }
+          $grape_name = NULL;
+          $grape_id = NULL;
+          if (!$stmt->bind_result($grape_id, $grape_name)) {
+            echo "Binding Output Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
+          }
+          echo '<select name = "child_type">';
+          while ($stmt->fetch()) {
+            echo '<option value = "' . $grape_id . '">' . $grape_name . '</option>';
+          }
+          echo '</select>';
+          echo '<input type = "submit" Value= "Create Relationship" class="btn btn-default">';
+          echo '</form>';
+
         ?>
+
+          </div>
+          <div class = "col-sm-2"></div>
+
+        </div>
+
+
+
+        
+
+        
       </div>
     </div>
   </div>

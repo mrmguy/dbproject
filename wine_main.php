@@ -30,7 +30,7 @@
         <div>
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Main</a></li>
-            <li><a href="#">Search</a></li>
+            <li><a href="wine_search.php">Search</a></li>
             <li><a href="wine_add.php">Add</a></li> 
             <li><a href="#">Change/Delete</a></li> 
           </ul>
