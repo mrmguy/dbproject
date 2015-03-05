@@ -37,29 +37,55 @@
     <div class="row">
       <div class="col-sm-2">
         <?php
-          include 'grape_list_menu.php';
+          include 'grape_list_menu.php'
         ?>
       </div>
       <div class = "col-sm-10">
-        <h4>Search Foods</h4>
-        <p>Find a wine to pair with a food.</p>
-        <form role="form" action = "search_food.php" method = "get">
-          <div class="form-group">
-            <label>Food:</label>
-            <input type="text" name="food">
-          </div>
-          <button type="submit" class="btn btn-default">Search Food</button>
-        </form>
+
+
+        <?php
+
+        // *********************************** grape / origin **************************************************
+          if (!($stmt = $mysqli->prepare("SELECT grape.grape_name, food.food_item FROM food 
+			INNER JOIN grape_food
+			ON food.id=grape_food.food_id
+			INNER JOIN grape
+			ON grape_food.grape_id=grape.id
+			WHERE food.food_item LIKE ?
+			ORDER BY grape.grape_name ASC"))) {
+            echo "Prepare failed: (" . $mysqli->erro . ") " . $mysqli->error;
+          }
           
-        <h4>Search Flavors</h4>
-        <p>Find a wine that has a certain flavor.</p>
-        <form role="form" action = "search_flavor.php" method = "get">
-          <div class="form-group">
-            <label>Food:</label>
-            <input type="text" name="flavor">
-          </div>
-          <button type="submit" class="btn btn-default">Search Flavor</button>
-        </form>
+          $food = $_GET['food'];
+          $food = '%' . $food . '%';
+          if (!$stmt->bind_param("s", $food)) {
+            echo "Binding Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
+          }
+
+          if (!$stmt->execute()) {
+            echo "Execute failed: (" . $mysqli->erro . ") " . $mysqli->error;
+          }
+          
+          $wine_grape = NULL;
+          $food_item = NULL;
+
+          if (!$stmt->bind_result($wine_grape, $food_item)) {
+            echo "Binding Output Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
+          }
+          
+          // $stmt->fetch();
+          // echo '<h4>' . $grape_name . ' Information:</h4>';
+          
+
+
+          while ($stmt->fetch()) {
+            echo '<p>Wine:' . $wine_grape . '</p>';
+            echo '<p>Food:' . $food_item . '</p>';
+           } 
+
+           
+
+        ?>
       </div>
     </div>
   </div>
