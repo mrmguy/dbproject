@@ -19,7 +19,7 @@
           }
           echo '<form action= "grape_list.php">';
           echo '<ul class="list-group">';
-          echo '<h4 class = "list-group-item-heading">Menu</h4>';
+          echo '<h4 class = "list-group-item-heading">Wines</h4>';
           while ($stmt->fetch()) {
           	echo '<button name = "grape_id" type = "submit" value =' . $grape_id . '>' . $grape_name . '</button></br>';
             // echo '<input type = "submit" Value=' . $grape_name . ' class="btn btn-default"></br>';
@@ -28,7 +28,7 @@
           
          echo '</ul>';
          echo '</form>';
-         echo '</br>';
+         //echo '</br>';
          echo '<p><a href = "food_list.php">Food List</a></p>';
          echo '<p><a href = "flavor_list.php">Flavor List</a></p>';
 //$mysqli->close();

@@ -29,8 +29,9 @@
           <ul class="nav navbar-nav">
             <li><a href="wine_main.php">Main</a></li>
             <li><a href="wine_search.php">Search</a></li>
-            <li><a href="wine_add.php">Add</a></li> 
-            <li><a href="wine_delete.php">Change/Delete</a></li> 
+            <li><a href="wine_add.php">Add</a></li>
+            <li><a href="wine_update.php">Update</a></li>
+            <li><a href="wine_delete.php">Delete</a></li>
           </ul>
         </div>
       </nav>
@@ -41,7 +42,7 @@
         ?>
       </div>
       <div class = "col-sm-10">
-
+      <h2>Specific Wine Information</h2><hr>
 
         <?php
 
@@ -70,7 +71,7 @@
           }
           
           $stmt->fetch();
-          echo '<h4>' . $grape_name . ' Information:</h4>';
+          echo '<h4>' . $grape_name . ' Regions:</h4>';
           echo '<p>Region: ' . $region . '</p>';
           echo '<p>Climate: ' . $climate . '</p>';
           echo '<p>Production: ' . $production . '</p>';
@@ -109,11 +110,11 @@
           }
           
           $stmt->fetch();
-          echo '<h4>' . $grape_name . ' Flavors:</h4>';
+          echo '<hr><h4>' . $grape_name . ' Flavors:</h4>';
           echo '<p>' . $flavor . ' - '. $description . '</p>';
           while ($stmt->fetch()) {
             //echo '<p>' . $grape_name . '</p>';
-            echo '<p>' . $flavor . '</p>';
+            echo '<p>' . $flavor . ' - '. $description . '</p>';
            } 
 
 
@@ -141,7 +142,7 @@
           }
           
           $stmt->fetch();
-          echo '<h4>' . $grape_name . ' goes with:</h4>';
+          echo '<hr><h4>' . $grape_name . ' goes with:</h4>';
           echo '<p>' . $food_item . '</p>';
           while ($stmt->fetch()) {
            	//echo '<p>' . $grape_name . '</p>';
@@ -174,7 +175,7 @@
           }
           
           $stmt->fetch();
-          echo '<h4>Desendent Grapes:</h4>';
+          echo '<hr><h4>Descendent Grapes:</h4>';
           echo '<p>' . $grape_name . '</p>';
           while ($stmt->fetch()) {
             //echo '<p>' . $grape_name . '</p>';
@@ -206,7 +207,7 @@
           }
           
           $stmt->fetch();
-          echo '<h4>Ancestor Grapes:</h4>';
+          echo '<hr><h4>Ancestor Grapes:</h4>';
           echo '<p>' . $grape_name . '</p>';
           while ($stmt->fetch()) {
             //echo '<p>' . $grape_name . '</p>';

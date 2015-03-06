@@ -31,8 +31,9 @@
           <ul class="nav navbar-nav">
             <li><a href="wine_main.php">Main</a></li>
             <li><a href="wine_search.php">Search</a></li>
-            <li><a href="wine_add.php">Add</a></li> 
-            <li><a href="wine_delete.php">Change/Delete</a></li>
+            <li><a href="wine_add.php">Add</a></li>
+            <li><a href="wine_update.php">Update</a></li>
+            <li class = "active"><a href="#">Delete</a></li>
           </ul>
         </div>
       </nav>
@@ -46,8 +47,10 @@
       </div>
 
       <div class="col-sm-10">
-        <h2>Delete an association between a food and a wine.</h2>
-        <p>Below is a list of wines and foods that they pair with. To delete food items from a wine select the foods and remove. The foods will remain in the database but no longer be assoicated with that wine.</p>
+        <h2>Delete a Wine / Food association</h2>
+        <p>Below is a list of wines and foods that they pair with. To remove a food from being associated with a wine, check the food or
+        foods you would like to unassociate with a particular wine and click Delete.</p>
+        <p>The foods will remain in the database but no longer be assoicated with that wine.</p>
         <hr>
         <?php
         // ********************************** grape / food **********************************************

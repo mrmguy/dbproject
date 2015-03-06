@@ -32,7 +32,7 @@
             <li><a href="wine_main.php">Main</a></li>
             <li><a href="wine_search.php">Search</a></li>
             <li><a href="wine_add.php">Add</a></li>
-             <li><a href="wine_update.php">Update</a></li>
+            <li><a href="wine_update.php">Update</a></li>
             <li><a href="wine_delete.php">Delete</a></li>
           </ul>
         </div>
@@ -48,7 +48,7 @@
 
       <div class="col-sm-10">
         <h2>Change Flavor Description</h2>
-        <p>Select the description you would like to change.</p>
+        <p>Modify or change the flavor description in the box below.</p>
         <hr>
         <?php
 
@@ -74,14 +74,12 @@
           if (!$stmt->bind_result($flavor, $description)) {
             echo "Binding Output Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
-          echo '<h3>Flavor / Description</h3>';
           
           while ($stmt->fetch()) {
             echo '<h4>' . $flavor . '</h4>';
-            echo '<p>' . $description . '</p>';
            } 
            echo '<form action = "wine_update3.php" method= "get">';
-           echo '<textarea name ="new_description" rows = "5" cols = "60">'. $description;
+           echo '<textarea name ="new_description" rows = "3" cols = "80">'. $description;
            echo '</textarea></br>';
            echo '<input type = "hidden" name = "flavor_id" value =' . $id . '>';
            echo '<input type = "submit" value = "Update">';

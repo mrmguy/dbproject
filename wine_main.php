@@ -29,10 +29,11 @@
       <nav class="navbar navbar-inverse">
         <div>
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Main</a></li>
+            <li class = "active"><a href="#">Main</a></li>
             <li><a href="wine_search.php">Search</a></li>
-            <li><a href="wine_add.php">Add</a></li> 
-            <li><a href="#">Change/Delete</a></li> 
+            <li><a href="wine_add.php">Add</a></li>
+            <li><a href="wine_update.php">Update</a></li>
+            <li><a href="wine_delete.php">Delete</a></li> 
           </ul>
         </div>
       </nav>

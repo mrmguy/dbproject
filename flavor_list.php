@@ -63,7 +63,7 @@
           if (!$stmt->bind_result($flavor, $description)) {
             echo "Binding Output Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
-          echo '<h3>Flavor / Description</h3>';
+          echo '<h3>Flavor / Description</h3><hr>';
           $stmt->fetch();
           while ($stmt->fetch()) {
             echo '<h4>' . $flavor . '</h4>';

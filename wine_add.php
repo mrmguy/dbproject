@@ -31,8 +31,9 @@
           <ul class="nav navbar-nav">
             <li><a href="wine_main.php">Main</a></li>
             <li><a href="wine_search.php">Search</a></li>
-            <li><a href="wine_add.php">Add</a></li> 
-            <li><a href="wine_delete.php">Change/Delete</a></li>
+            <li class = "active"><a href="#">Add</a></li>
+            <li><a href="wine_update.php">Update</a></li>
+            <li><a href="wine_delete.php">Delete</a></li>
           </ul>
         </div>
       </nav>
@@ -47,8 +48,9 @@
 
       <div class="col-sm-10">
         <h2>Add Items</h2>
-        <p>You add items and associate items. If you want associate grape with a food or a flavor you first have to add the items. After an item
-        is added it be associated.</p>
+        <p>You add items and associate items. If you want associate grape with a food or a flavor you first have to add the items.</p>
+        <p>You can check whether a food or flavor has been added using the menu to the left. Also you check information on a particular grape
+        by selecting the grape in the menu</p>
         <hr>
         <div class="row">
           <div class="col-sm-4">
@@ -126,7 +128,7 @@
           echo 'Climate <input type= "text" name ="climate"></br>';
           echo 'production <input type = "number" name="production"></br>';
           echo 'Origin Year: <input type = "number" name ="origin_date"></br>';
-          echo '<input type = "submit" class="btn btn-default" value="Add Origin" >';
+          echo '<input type = "submit" class="btn btn-default" value="Add Region" >';
           echo '</form>'
         ?>
 

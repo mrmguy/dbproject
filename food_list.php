@@ -29,8 +29,9 @@
           <ul class="nav navbar-nav">
             <li><a href="wine_main.php">Main</a></li>
             <li><a href="wine_search.php">Search</a></li>
-            <li><a href="wine_add.php">Add</a></li> 
-            <li><a href="wine_delete.php">Change/Delete</a></li> 
+            <li><a href="wine_add.php">Add</a></li>
+            <li><a href="wine_update.php">Update</a></li>
+            <li><a href="wine_delete.php">Delete</a></li>
           </ul>
         </div>
       </nav>
@@ -61,10 +62,10 @@
           if (!$stmt->bind_result($food)) {
             echo "Binding Output Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
-          echo '<h4>Foods</h4>';
+          echo '<h4>Foods</h4><hr>';
           $stmt->fetch();
           while ($stmt->fetch()) {
-            echo '<p>' . $food . '</p>';
+            echo '<p>' . $food . '</p><hr>';
             }
           $mysqli->close();
         ?>

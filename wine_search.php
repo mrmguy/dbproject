@@ -21,16 +21,17 @@
 
   <div class="container">
     <div class="jumbotron">
-      <h1>Wine Database</h1>
+      <h1>Wine Database</a></h1>
       <p>Many things to know about wine.</p> 
     </div>
     <nav class="navbar navbar-inverse">
         <div>
           <ul class="nav navbar-nav">
-            <li class=><a href="wine_main.php">Main</a></li>
-            <li><a href="#">Search</a></li>
-            <li><a href="wine_add.php">Add</a></li> 
-            <li><a href="#">Change/Delete</a></li> 
+            <li><a href="wine_main.php">Main</a></li>
+            <li class = "active"><a href="#">Search</a></li>
+            <li><a href="wine_add.php">Add</a></li>
+            <li><a href="wine_update.php">Update</a></li>
+            <li><a href="wine_delete.php">Delete</a></li>
           </ul>
         </div>
       </nav>
@@ -41,7 +42,8 @@
         ?>
       </div>
       <div class = "col-sm-10">
-        <h4>Search Foods</h4>
+        <h2>Search for a Food or Flavor</h2>
+        <p>Here you can search for a particular food or flavor and find what wine it relates to.</p><hr>
         <p>Find a wine to pair with a food.</p>
         <form role="form" action = "search_food.php" method = "get">
           <div class="form-group">
@@ -50,8 +52,7 @@
           </div>
           <button type="submit" class="btn btn-default">Search Food</button>
         </form>
-          
-        <h4>Search Flavors</h4>
+        </br><hr>
         <p>Find a wine that has a certain flavor.</p>
         <form role="form" action = "search_flavor.php" method = "get">
           <div class="form-group">

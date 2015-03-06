@@ -32,7 +32,7 @@
             <li><a href="wine_main.php">Main</a></li>
             <li><a href="wine_search.php">Search</a></li>
             <li><a href="wine_add.php">Add</a></li>
-             <li><a href="wine_update.php">Update</a></li>
+            <li class = "active"><a href="#">Update</a></li>
             <li><a href="wine_delete.php">Delete</a></li>
           </ul>
         </div>
@@ -70,7 +70,6 @@
           if (!$stmt->bind_result($id, $flavor, $description)) {
             echo "Binding Output Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
-          echo '<h3>Flavor / Description</h3>';
           echo '<form action = "wine_update2.php" method= "get">';
           $stmt->fetch();
           while ($stmt->fetch()) {
