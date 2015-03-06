@@ -30,14 +30,14 @@
             <li><a href="wine_main.php">Main</a></li>
             <li><a href="wine_search.php">Search</a></li>
             <li><a href="wine_add.php">Add</a></li> 
-            <li><a href="wind_delete.php">Change/Delete</a></li>
+            <li><a href="wine_delete.php">Change/Delete</a></li> 
           </ul>
         </div>
       </nav>
     <div class="row">
       <div class="col-sm-2">
         <?php
-          include 'grape_list_menu.php'
+          include 'grape_list_menu.php';
         ?>
       </div>
       <div class = "col-sm-10">
@@ -45,41 +45,28 @@
 
         <?php
 
-        // *********************************** search food **************************************************
-          if (!($stmt = $mysqli->prepare("SELECT grape.grape_name, food.food_item FROM food 
-			INNER JOIN grape_food
-			ON food.id=grape_food.food_id
-			INNER JOIN grape
-			ON grape_food.grape_id=grape.id
-			WHERE food.food_item LIKE ?
-			ORDER BY grape.grape_name ASC"))) {
+        
+
+            // ******************************* grape / flavor ***************************************************
+           if (!($stmt = $mysqli->prepare("SELECT food_item FROM food ORDER BY food_item ASC"))) {
             echo "Prepare failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
           
-          $food = $_GET['food'];
-          $food = '%' . $food . '%';
-          if (!$stmt->bind_param("s", $food)) {
-            echo "Binding Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
-          }
-
           if (!$stmt->execute()) {
             echo "Execute failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
           
-          $wine_grape = NULL;
-          $food_item = NULL;
+          $food = NULL;
 
-          if (!$stmt->bind_result($wine_grape, $food_item)) {
+          if (!$stmt->bind_result($food)) {
             echo "Binding Output Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
-          
+          echo '<h4>Foods</h4>';
+          $stmt->fetch();
           while ($stmt->fetch()) {
-            echo '<p>Food:' . $food_item . '</p>';
-            echo '<p>Wine:' . $wine_grape . '</p>';
-           } 
-
-           
-
+            echo '<p>' . $food . '</p>';
+            }
+          $mysqli->close();
         ?>
       </div>
     </div>

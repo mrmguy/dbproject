@@ -29,8 +29,9 @@
           <ul class="nav navbar-nav">
             <li><a href="wine_main.php">Main</a></li>
             <li><a href="wine_search.php">Search</a></li>
-            <li><a href="wine_add.php">Add</a></li> 
-            <li><a href="wind_delete.php">Change/Delete</a></li>
+            <li><a href="wine_add.php">Add</a></li>
+            <li><a href="wine_update.php">Update</a></li>
+            <li><a href="wine_delete.php">Delete</a></li>
           </ul>
         </div>
       </nav>
@@ -45,40 +46,34 @@
 
         <?php
 
-        // *********************************** search food **************************************************
-          if (!($stmt = $mysqli->prepare("SELECT grape.grape_name, food.food_item FROM food 
-			INNER JOIN grape_food
-			ON food.id=grape_food.food_id
-			INNER JOIN grape
-			ON grape_food.grape_id=grape.id
-			WHERE food.food_item LIKE ?
-			ORDER BY grape.grape_name ASC"))) {
+        
+
+           // ******************************* grape / flavor ***************************************************
+           if (!($stmt = $mysqli->prepare("SELECT flavor, description FROM flavors ORDER BY flavor ASC"))) {
             echo "Prepare failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
           
-          $food = $_GET['food'];
-          $food = '%' . $food . '%';
-          if (!$stmt->bind_param("s", $food)) {
-            echo "Binding Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
-          }
-
           if (!$stmt->execute()) {
             echo "Execute failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
           
-          $wine_grape = NULL;
-          $food_item = NULL;
+          $flavor = NULL;
+          $description = NULL;
 
-          if (!$stmt->bind_result($wine_grape, $food_item)) {
+          if (!$stmt->bind_result($flavor, $description)) {
             echo "Binding Output Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
-          
+          echo '<h3>Flavor / Description</h3>';
+          $stmt->fetch();
           while ($stmt->fetch()) {
-            echo '<p>Food:' . $food_item . '</p>';
-            echo '<p>Wine:' . $wine_grape . '</p>';
+            echo '<h4>' . $flavor . '</h4>';
+            echo '<p>' . $description . '</p>';
+            echo '<hr>';
            } 
 
-           
+
+
+        
 
         ?>
       </div>

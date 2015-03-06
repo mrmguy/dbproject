@@ -28,5 +28,8 @@
           
          echo '</ul>';
          echo '</form>';
+         echo '</br>';
+         echo '<p><a href = "food_list.php">Food List</a></p>';
+         echo '<p><a href = "flavor_list.php">Flavor List</a></p>';
 //$mysqli->close();
 ?>

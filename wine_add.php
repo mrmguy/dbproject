@@ -30,9 +30,9 @@
         <div>
           <ul class="nav navbar-nav">
             <li><a href="wine_main.php">Main</a></li>
-            <li class><a href="wine_search.php">Search</a></li>
-            <li class = "active"><a href="#">Add</a></li> 
-            <li><a href="#">Change/Delete</a></li> 
+            <li><a href="wine_search.php">Search</a></li>
+            <li><a href="wine_add.php">Add</a></li> 
+            <li><a href="wine_delete.php">Change/Delete</a></li>
           </ul>
         </div>
       </nav>

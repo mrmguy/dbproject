@@ -7,7 +7,8 @@
     echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
   }
 ?>
-  <!DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <title>Wine Data</title>
@@ -16,6 +17,7 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="custom.css">
 </head>
 <body>
 
@@ -24,44 +26,41 @@
       <h1>Wine Database</h1>
       <p>Many things to know about wine.</p> 
     </div>
-    <nav class="navbar navbar-inverse">
+      <nav class="navbar navbar-inverse">
         <div>
           <ul class="nav navbar-nav">
-            <li class=><a href="wine_main.php">Main</a></li>
-            <li><a href="#">Search</a></li>
+            <li><a href="wine_main.php">Main</a></li>
+            <li><a href="wine_search.php">Search</a></li>
             <li><a href="wine_add.php">Add</a></li> 
-            <li><a href="#">Change/Delete</a></li> 
+            <li><a href="wine_delete.php">Change/Delete</a></li>
           </ul>
         </div>
       </nav>
+
+
     <div class="row">
       <div class="col-sm-2">
         <?php
-          include 'grape_list_menu.php';
+          include 'grape_list_menu.php'
         ?>
       </div>
-      <div class = "col-sm-10">
-        <h4>Search Foods</h4>
-        <p>Find a wine to pair with a food.</p>
-        <form role="form" action = "search_food.php" method = "get">
-          <div class="form-group">
-            <label>Food:</label>
-            <input type="text" name="food">
-          </div>
-          <button type="submit" class="btn btn-default">Search Food</button>
-        </form>
-          
-        <h4>Search Flavors</h4>
-        <p>Find a wine that has a certain flavor.</p>
-        <form role="form" action = "search_flavor.php" method = "get">
-          <div class="form-group">
-            <label>Flavor:</label>
-            <input type="text" name="flavor">
-          </div>
-          <button type="submit" class="btn btn-default">Search Flavor</button>
-        </form>
+
+      <div class="col-sm-10">
+        <h2>Delete Items</h2>
+        <p>You add items and associate items. If you want associate grape with a food or a flavor you first have to add the items. After an item
+        is added it be associated.</p>
+        <hr>
+        
+        <hr>
+
+        
+
+        
       </div>
     </div>
   </div>
+<?php
+  $mysqli->close();
+?>
 </body>
 </html>
