@@ -23,7 +23,7 @@ CREATE TABLE flavors (
 
 CREATE TABLE food (
 	id INT AUTO_INCREMENT PRIMARY KEY,
-	food_item VARCHAR(255)
+	food_item VARCHAR(255) NOT NULL
 	) ENGINE = innodb;
 
 -- CREATE TABLE grape_region (

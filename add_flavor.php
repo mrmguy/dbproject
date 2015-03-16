@@ -9,10 +9,8 @@
   if (!($stmt = $mysqli->prepare("INSERT INTO flavors (flavor, description) VALUES (?, ?)"))) {
     echo "Prepare failed: (" . $mysqli->erro . ") " . $mysqli->error;
   }
-
   $flavor = $_GET['flavor'];
   $description = $_GET['description'];
-  
   if (!$stmt->bind_param("ss", $flavor, $description)) {
     echo "Binding parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
   }

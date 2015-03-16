@@ -9,9 +9,7 @@
   if (!($stmt = $mysqli->prepare("INSERT INTO food (food_item) VALUES (?)"))) {
     echo "Prepare failed: (" . $mysqli->erro . ") " . $mysqli->error;
   }
-
   $food_item = $_GET['food'];
-  
   if (!$stmt->bind_param("s", $food_item)) {
     echo "Binding parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
   }

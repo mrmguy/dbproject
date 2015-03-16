@@ -25,10 +25,8 @@
             // echo '<input type = "submit" Value=' . $grape_name . ' class="btn btn-default"></br>';
             // echo '<input type = "hidden" Name = "grape_id" value ='. $grape_id . '>';
           }
-          
          echo '</ul>';
          echo '</form>';
-         //echo '</br>';
          echo '<p><a href = "food_list.php">Food List</a></p>';
          echo '<p><a href = "flavor_list.php">Flavor List</a></p>';
 //$mysqli->close();

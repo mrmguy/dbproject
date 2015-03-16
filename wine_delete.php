@@ -7,7 +7,6 @@
     echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
   }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,15 +36,12 @@
           </ul>
         </div>
       </nav>
-
-
     <div class="row">
       <div class="col-sm-2">
         <?php
           include 'grape_list_menu.php'
         ?>
       </div>
-
       <div class="col-sm-10">
         <h2>Delete a Wine / Food association</h2>
         <p>Below is a list of wines and foods that they pair with. To remove a food from being associated with a wine, check the food or
@@ -58,7 +54,6 @@
         INNER JOIN food ON grape_food.food_id=food.id ORDER BY grape.grape_name ASC"))) {
             echo "Prepare failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
-          
           if (!$stmt->execute()) {
             echo "Execute failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
@@ -66,11 +61,9 @@
           $food_item = NULL;
           $grape_id = NULL;
           $food_id = NULL;
-
           if (!$stmt->bind_result($grape_name, $food_item, $grape_id, $food_id)) {
             echo "Binding Output Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
-          
           $stmt->fetch();
           echo '<form action="delete_food.php" method="get"><table class = "table-bordered"><tr><td>';
           echo '<h4>' . $grape_name . '</h4></td><td><input type = "checkbox" name="food_delete[]" value=' . $food_id . '>' . $food_item . '</br>';
@@ -81,20 +74,13 @@
               echo '</td><td><button name="grape" type="submit" value='. $grape_id_holder . '>Delete</button></td></tr>
               <tr><td><h4>' . $grape_name . '</h4></td><td>';
             }
-            
             echo '<input type = "checkbox" name="food_delete[]" value=' . $food_id . '>' . $food_item . '</br>';
             $grape_name_holder=$grape_name;
             $grape_id_holder=$grape_id;
            } 
-
            echo '<td><button name="grape" type="submit" value='. $grape_id_holder . '>Delete</button></td></tr></table></form>';
-           
            ?>
         <hr>
-
-        
-
-        
       </div>
     </div>
   </div>

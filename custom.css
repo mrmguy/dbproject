@@ -4,3 +4,7 @@ p {
 td {
 	padding: 15px;
 }
+.jumbotron {
+	background-color: #7A2929;
+	color: white;
+}

@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="custom.css">
 </head>
 <body>
 
@@ -42,23 +43,15 @@
         ?>
       </div>
       <div class = "col-sm-10">
-
-
         <?php
-
-        
-
             // ******************************* grape / flavor ***************************************************
            if (!($stmt = $mysqli->prepare("SELECT food_item FROM food ORDER BY food_item ASC"))) {
             echo "Prepare failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
-          
           if (!$stmt->execute()) {
             echo "Execute failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
-          
           $food = NULL;
-
           if (!$stmt->bind_result($food)) {
             echo "Binding Output Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }

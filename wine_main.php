@@ -7,7 +7,6 @@
     echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
   }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +19,6 @@
   <link rel="stylesheet" type="text/css" href="custom.css">
 </head>
 <body>
-
   <div class="container">
     <div class="jumbotron">
       <h1>Wine Database</h1>
@@ -37,22 +35,12 @@
           </ul>
         </div>
       </nav>
-
-
     <div class="row">
       <div class="col-sm-2">
       <?php
         include 'grape_list_menu.php'
       ?>
-        <!-- <ul class="list-group">
-          <h4 class = "list-group-item-heading">Menu</h4>
-          <li class="list-group-item active">Main</li>
-          <li class="list-group-item">Search</li>
-          <li class="list-group-item">Add</li>
-          <li class="list-group-item">Change/Delete</li>
-        </ul> -->
       </div>
-
       <div class="col-sm-10">
         <h2>How to use this site</h2>
         <hr>
@@ -61,11 +49,6 @@
         or what food will go best with certain wines, go to the search page.</p>
         <p>To enter additional grapes, foods, flavor charateristics or wine information or to associate wine, food, and flavors go to Add.</p>
         <p>Finally any item can be deleted or changed on the change/delete link.</p>
-        
-        
-
-
-
       </div>
     </div>
   </div>

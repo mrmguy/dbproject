@@ -9,10 +9,8 @@
   if (!($stmt = $mysqli->prepare("INSERT INTO grape (grape_name, color) VALUES (?, ?)"))) {
     echo "Prepare failed: (" . $mysqli->erro . ") " . $mysqli->error;
   }
-
   $grape = $_GET['grape'];
   $color = $_GET['color'];
-  
   if (!$stmt->bind_param("ss", $grape, $color)) {
     echo "Binding parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
   }

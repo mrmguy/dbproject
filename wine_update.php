@@ -7,7 +7,6 @@
     echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
   }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,36 +36,27 @@
           </ul>
         </div>
       </nav>
-
-
     <div class="row">
       <div class="col-sm-2">
         <?php
           include 'grape_list_menu.php'
         ?>
       </div>
-
       <div class="col-sm-10">
         <h2>Change Flavor Description</h2>
         <p>Select the description you would like to change.</p>
         <hr>
         <?php
-
-        
-
            // ******************************* grape / flavor ***************************************************
            if (!($stmt = $mysqli->prepare("SELECT id, flavor, description FROM flavors ORDER BY flavor ASC"))) {
             echo "Prepare failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
-          
           if (!$stmt->execute()) {
             echo "Execute failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
-          
           $flavor = NULL;
           $description = NULL;
           $id = NULL;
-
           if (!$stmt->bind_result($id, $flavor, $description)) {
             echo "Binding Output Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
@@ -78,17 +68,8 @@
             echo '<button name = "flavor_id" type = "submit" value =' . $id . '>Change</button></br>';
            } 
            echo '</form>';
-
-
-
-        
-
         ?>
         <hr>
-
-        
-
-        
       </div>
     </div>
   </div>

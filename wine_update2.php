@@ -7,7 +7,6 @@
     echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
   }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,8 +36,6 @@
           </ul>
         </div>
       </nav>
-
-
     <div class="row">
       <div class="col-sm-2">
         <?php
@@ -51,30 +48,22 @@
         <p>Modify or change the flavor description in the box below.</p>
         <hr>
         <?php
-
-        
-
            // ******************************* grape / flavor ***************************************************
            if (!($stmt = $mysqli->prepare("SELECT flavor, description FROM flavors WHERE id = ?"))) {
             echo "Prepare failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
-          
           $id = $_GET['flavor_id'];
-          
           if (!$stmt->bind_param("s", $id)) {
             echo "Binding Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
           if (!$stmt->execute()) {
             echo "Execute failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
-          
           $flavor = NULL;
           $description = NULL;
-
           if (!$stmt->bind_result($flavor, $description)) {
             echo "Binding Output Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
-          
           while ($stmt->fetch()) {
             echo '<h4>' . $flavor . '</h4>';
            } 
@@ -84,10 +73,8 @@
            echo '<input type = "hidden" name = "flavor_id" value =' . $id . '>';
            echo '<input type = "submit" value = "Update">';
            echo '</form>';
-
         ?>
         <hr>
-  
       </div>
     </div>
   </div>

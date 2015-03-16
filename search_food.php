@@ -18,7 +18,6 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-
   <div class="container">
     <div class="jumbotron">
       <h1>Wine Database</h1>
@@ -42,45 +41,34 @@
         ?>
       </div>
       <div class = "col-sm-10">
-
-
         <?php
-
         // *********************************** search food **************************************************
-          if (!($stmt = $mysqli->prepare("SELECT grape.grape_name, food.food_item FROM food 
-			INNER JOIN grape_food
-			ON food.id=grape_food.food_id
-			INNER JOIN grape
-			ON grape_food.grape_id=grape.id
-			WHERE food.food_item LIKE ?
-			ORDER BY grape.grape_name ASC"))) {
+        if (!($stmt = $mysqli->prepare("SELECT grape.grape_name, food.food_item FROM food 
+    			INNER JOIN grape_food
+    			ON food.id=grape_food.food_id
+    			INNER JOIN grape
+    			ON grape_food.grape_id=grape.id
+    			WHERE food.food_item LIKE ?
+    			ORDER BY grape.grape_name ASC"))) {
             echo "Prepare failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
-          
           $food = $_GET['food'];
           $food = '%' . $food . '%';
           if (!$stmt->bind_param("s", $food)) {
             echo "Binding Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
-
           if (!$stmt->execute()) {
             echo "Execute failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
-          
           $wine_grape = NULL;
           $food_item = NULL;
-
           if (!$stmt->bind_result($wine_grape, $food_item)) {
             echo "Binding Output Parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
           }
-          
           while ($stmt->fetch()) {
             echo '<p>Food:' . $food_item . '</p>';
             echo '<p>Wine:' . $wine_grape . '</p>';
            } 
-
-           
-
         ?>
       </div>
     </div>

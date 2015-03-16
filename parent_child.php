@@ -9,10 +9,8 @@
   if (!($stmt = $mysqli->prepare("INSERT INTO genetic (parent_id, child_id) VALUES (?, ?)"))) {
     echo "Prepare failed: (" . $mysqli->erro . ") " . $mysqli->error;
   }
-
   $parent_id = $_GET['parent_type'];
   $child_id = $_GET['child_type'];
-  
   if (!$stmt->bind_param("ii", $parent_id, $child_id)) {
     echo "Binding parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
   }

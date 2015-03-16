@@ -9,7 +9,6 @@
   if (!($stmt = $mysqli->prepare("INSERT INTO region (region, climate, production, origin_date, grape_id) VALUES (?, ?, ?, ?, ?)"))) {
     echo "Prepare failed: (" . $mysqli->erro . ") " . $mysqli->error;
   }
-
   $region = $_GET['region'];
   $climate = $_GET['climate'];
   $production = $_GET['production'];
@@ -24,6 +23,5 @@
     echo "Binding parameters failed: (" . $mysqli->erro . ") " . $mysqli->error;
   }
   $mysqli->close();
-
-  //header('Location: wine_add.php')
+  header('Location: wine_add.php')
 ?>
